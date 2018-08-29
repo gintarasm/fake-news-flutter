@@ -3,7 +3,7 @@ import 'src/domain/Post.dart';
 import 'news_post_details.dart';
 
 class NewsPostItem extends StatelessWidget {
-  Post post;
+  final Post post;
 
   NewsPostItem(this.post);
 
@@ -37,7 +37,7 @@ class NewsPostItem extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
-                  post.content,
+                  post.body,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),

@@ -2,6 +2,7 @@ name: flutter_fake_news
 description: Best News Fake News
 
 dependencies:
+  http: ^0.11.3+17
   flutter:
     sdk: flutter
 

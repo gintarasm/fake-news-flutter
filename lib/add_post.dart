@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
-import 'src/domain/Post.dart';
+import 'src/service/PostApi.dart';
 
 class AddPost extends StatefulWidget {
-  void Function(Post) _handleAddPost;
-
-  AddPost(this._handleAddPost);
-
   @override
-  State<StatefulWidget> createState() => AddPostFormState(_handleAddPost);
+  State<StatefulWidget> createState() => AddPostFormState();
 }
 
 class AddPostFormState extends State<AddPost> {
-  final void Function(Post) _handleAddPost;
   final _formKey = GlobalKey<FormState>();
   final Map<String, String> _data = Map();
-
-  AddPostFormState(this._handleAddPost);
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +38,11 @@ class AddPostFormState extends State<AddPost> {
                     maxLines: 10,
                     validator: (value) {
                       if (value.isEmpty) {
-                        return 'Please enter post content';
+                        return 'Please enter post body';
                       }
                     },
                     onSaved: (value) {
-                      _data['content'] = value;
+                      _data['body'] = value;
                     },
                   ),
                   Row(
@@ -66,11 +59,10 @@ class AddPostFormState extends State<AddPost> {
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
-                              _handleAddPost(Post(
-                                  id: 5,
-                                  title: _data['title'],
-                                  content: _data['content']));
-                              Navigator.pop(context);
+                              add(_data['title'], _data['body'])
+                                  .then((post) {
+                                Navigator.pop(context);
+                              });
                             }
                           },
                         ),

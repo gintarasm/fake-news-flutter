@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'src/domain/Post.dart';
 
 class NewsPostDetails extends StatelessWidget {
-  Post post;
+  final Post post;
 
   NewsPostDetails(this.post);
 
@@ -36,7 +36,7 @@ class NewsPostDetails extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.all(10.0),
                     child: Text(
-                      post.content,
+                      post.body,
                     ),
                   ),
                 )
